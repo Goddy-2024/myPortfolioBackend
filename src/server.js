@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import connectDB from './config/db.js'
 
 
 const app = express();
@@ -45,8 +46,10 @@ app.post("/send-email", async (req, res)=>{
       }
 });
 const PORT = process.env.PORT;
-app.listen(PORT, ()=>{
+connectDB.then(()=>{
+      app.listen(PORT, ()=>{
       console.log(`Server Running Successfully on port ${PORT}!!!`);
+})
 })
 //in ./backend Do npm install cors express nodemailer dotenv
 //in ./frontend do npm install axios
