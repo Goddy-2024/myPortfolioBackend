@@ -15,6 +15,7 @@ app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+app.use((req, res, next) => {console.log(`received a ${req.method} request of URL ${req.url}`); next(); });
 app.get("/health", (req, res) => {
   res.status(200).json({ message: "Health status ok" });
 });
