@@ -2,16 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-import { connectDB } from '../config/db.js';
-
-
 
 
 const app = express();
 dotenv.config();
 
 app.use(cors({
-      origin: ['https://godswillomondiportfoliodev.netlify.app', 'http://localhost:8081']
+      origin: ['https://godswillomondiportfoliodev.netlify.app'],
 }));
 app.use(express.json());
 
@@ -47,7 +44,6 @@ app.post("/send-email", async (req, res)=>{
             replyTo: email,
 
       };
-      await messagetxt.save();
 
       try {
             await transporter.sendMail(mailOptions);
@@ -62,10 +58,9 @@ app.post("/send-email", async (req, res)=>{
       }
 });
 const PORT = process.env.PORT;
-connectDB().then(()=>{
       app.listen(PORT, ()=>{
       console.log(`Server Running Successfully on port ${PORT}!!!`);
 })
-})
+
 //in ./backend Do npm install cors express nodemailer dotenv
 //in ./frontend do npm install axios

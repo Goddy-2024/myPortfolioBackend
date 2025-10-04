@@ -10,6 +10,9 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+sshGoddy.txt
+sshGoddy.txt.pub
+
 
 # OS-specific files
 .DS_Store
